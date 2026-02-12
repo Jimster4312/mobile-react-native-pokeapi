@@ -1,24 +1,20 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
-
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
-export const unstable_settings = {
-  anchor: '(tabs)',
-};
+import { Stack } from "expo-router";
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <Stack>
+      <Stack.Screen name="index" options={{ title: "Home" }} />
+      <Stack.Screen
+        name="details"
+        options={{
+          headerBackButtonDisplayMode: "minimal",
+          presentation: "formSheet",
+          // sheetAllowedDetents: [0.5, 0.9], // Removed the 0.5 detent for a nicer ux (at least for me, but feel free to add it back if you like it!)
+          sheetAllowedDetents: [0.9],
+          sheetGrabberVisible: true,
+          headerShown: false,
+        }}
+      />
+    </Stack>
   );
 }

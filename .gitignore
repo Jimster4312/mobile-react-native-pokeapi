@@ -41,3 +41,7 @@ app-example
 # generated native folders
 /ios
 /android
+
+# Used for remote development, but I don't want to commit it
+docker-compose.yml
+docker.env
